@@ -1,0 +1,10 @@
+{
+  "note": "Out-of-corpus questions: nothing in examples/corpus answers them. The correct behavior is to flag insufficient evidence (abstain), not to answer. Some are deliberately near the corpus topic to tempt a retrieval system into a confident wrong answer.",
+  "questions": [
+    {"id": "ood1", "question": "What is the boiling point of tungsten?"},
+    {"id": "ood2", "question": "Who wrote the novel Moby-Dick?"},
+    {"id": "ood3", "question": "Does green tea reduce the risk of stroke?"},
+    {"id": "ood4", "question": "Is coffee associated with a lower risk of liver cancer?"},
+    {"id": "ood5", "question": "What daily caffeine limit is recommended for children?"}
+  ]
+}

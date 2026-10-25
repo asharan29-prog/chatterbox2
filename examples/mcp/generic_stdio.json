@@ -1,0 +1,9 @@
+{
+  "name": "noesis",
+  "transport": "stdio",
+  "command": "python",
+  "args": ["-m", "noesis", "--db", "/absolute/path/to/topic.noesis.db", "serve-mcp"],
+  "env": {
+    "NOESIS_MODEL": "mock"
+  }
+}

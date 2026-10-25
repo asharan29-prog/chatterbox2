@@ -1,0 +1,42 @@
+name: Bug report
+description: Something in Noesis does not work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please do not paste API keys or private documents.
+        Security problems (for example a prompt-injection bypass) belong in a private
+        advisory instead: see SECURITY.md.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Commands or a minimal Python snippet. `--model mock` reproductions are ideal because they are deterministic.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output / traceback
+      render: text
+  - type: input
+    id: model
+    attributes:
+      label: Model spec
+      placeholder: mock | none | anthropic:... | openai:... | ollama:...
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      placeholder: "noesis --version, python --version, OS, mcp version if relevant"
+    validations:
+      required: true

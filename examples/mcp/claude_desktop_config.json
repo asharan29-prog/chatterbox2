@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "noesis": {
+      "command": "noesis",
+      "args": ["serve-mcp"],
+      "env": {
+        "NOESIS_DB": "/absolute/path/to/coffee.noesis.db",
+        "NOESIS_MODEL": "none"
+      }
+    }
+  }
+}

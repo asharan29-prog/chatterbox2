@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/asharan29-prog/chatterbox2/security/advisories/new
+    about: Please report vulnerabilities (including prompt-injection bypasses) privately.

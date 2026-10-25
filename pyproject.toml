@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "noesis"
+version = "0.1.0"
+description = "Evidence-backed understanding and independent, auditable reasoning loops for any AI model."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "Noesis contributors" }]
+keywords = ["llm", "reasoning", "knowledge-graph", "beliefs", "mcp", "rag", "calibration"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "pydantic>=2.5",
+  "httpx>=0.25",
+  "numpy>=1.23",
+]
+
+[project.optional-dependencies]
+anthropic = []            # uses the public Messages HTTP API via httpx; no SDK required
+openai = []               # uses Chat Completions / Embeddings HTTP API via httpx
+pdf = ["pypdf>=3.0"]
+web = ["beautifulsoup4>=4.11"]
+agent = ["beautifulsoup4>=4.11"]   # Research Agent (web search + fetch); httpx is a core dependency
+mcp = ["mcp>=1.2"]
+sklearn = ["scikit-learn>=1.2"]
+cli = ["rich>=13"]            # CLI itself is stdlib argparse; rich is optional
+all = ["pypdf>=3.0", "beautifulsoup4>=4.11", "mcp>=1.2", "rich>=13"]
+dev = [
+  "pytest>=7.4",
+  "ruff>=0.4",
+  "pypdf>=3.0",
+  "beautifulsoup4>=4.11",
+]
+
+[project.scripts]
+noesis = "noesis.cli:main"
+noesis-mcp = "noesis.mcp_server:main"
+noesis-agent = "noesis.agent.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/asharan29-prog/chatterbox2"
+
+[tool.setuptools.packages.find]
+include = ["noesis*"]
+
+[tool.setuptools.package-data]
+noesis = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+  "integration: needs real provider API keys / network (skipped by default)",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+# E501: line length is handled by review, not lint. B008: function calls in defaults are intentional
+# (dataclass/pydantic factories). B905: zip() over equal-length arrays is idiomatic here and
+# `strict=` is used where lengths can actually differ.
+ignore = ["E501", "B008", "B905"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402"]
